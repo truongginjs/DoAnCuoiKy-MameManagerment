@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Design.ReportWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Design"
+            
+            mc:Ignorable="d" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+
+             TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+             TextElement.FontWeight="Regular"
+             TextElement.FontSize="13"
+             TextOptions.TextFormattingMode="Ideal"
+             TextOptions.TextRenderingMode="Auto"
+             Background="{DynamicResource MaterialDesignPaper}"
+             FontFamily="{DynamicResource MaterialDesignFont}"
+             d:DesignHeight="500" d:DesignWidth="800">
+    <Grid Background="FloralWhite">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="90"/>
+            <RowDefinition/>
+
+
+        </Grid.RowDefinitions>
+        <materialDesign:Card Grid.Column="0" VerticalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Biều đồ" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" Margin="30 0 0 0"/>
+                <StackPanel Orientation="Horizontal" Grid.Row="1">
+                    <StackPanel.Resources>
+
+                        <Style TargetType="TextBlock">
+
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Margin" Value="10 18 30 0"/>
+                        </Style>
+                        <Style TargetType="DatePicker" BasedOn="{StaticResource MaterialDesignFloatingHintDatePicker}">
+                            <Setter Property="Width" Value="120"/>
+                            <Setter Property="Margin" Value="0 0 30 0"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Từ ngày:"/>
+
+                    <DatePicker materialDesign:HintAssist.Hint="Chọn ngày" x:Name="dpFromDate"/>
+                    <TextBlock Text="Đến ngày:"/>
+
+                    <DatePicker materialDesign:HintAssist.Hint="Chọn ngày" x:Name="dpToDate"/>
+                    <Button x:Name="btnLineChart" ToolTip="Biểu đồ đường" Click="BtnLineChart_Click" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                        <materialDesign:PackIcon Kind="VectorPolyline" />
+                    </Button>
+                    <Button  Name="btnColumnChart" ToolTip="Biểu đồ Cột" Click="BtnColumnChart_Click" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                        <materialDesign:PackIcon Kind="ChartBar"/>
+                    </Button>
+                    <Button Name="btnPieChart" ToolTip="Biểu đồ tròn" Click="BtnPieChart_Click" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}">
+                        <materialDesign:PackIcon Kind="ChartPie"/>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+
+        </materialDesign:Card>
+        <ContentControl Grid.Row="1" Content="{Binding}"/>
+    </Grid>
+</UserControl>
+

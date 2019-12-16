@@ -1,0 +1,66 @@
+﻿            <materialDesign:Card Grid.Column="1" Margin="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <DockPanel>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal" DockPanel.Dock="Right">
+                            <Button x:Name="btnAdd" ToolTip="Thêm" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Click="BtnAdd_Click">
+                                <materialDesign:PackIcon Kind="ShapeSquarePlus" />
+                            </Button>
+                            <Button x:Name="btnDelete" Click="BtnDelete_Click" ToolTip="btnDel" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                                <materialDesign:PackIcon Kind="Delete" />
+                            </Button>
+                            <ToggleButton Name="tBtnEdit" IsChecked="True"
+                        Style="{StaticResource MaterialDesignActionToggleButton}" Background="LightGreen" Width="{Binding Path=Width, ElementName=btnAdd}" Height="{Binding Path=Width, ElementName=btnAdd}"
+                        ToolTip="MaterialDesignActionLightToggleButton"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth2" >
+                                <ToggleButton.Content>
+                                    <materialDesign:PackIcon Kind="PencilOff" />
+                                </ToggleButton.Content>
+                                <materialDesign:ToggleButtonAssist.OnContent>
+                                    <materialDesign:PackIcon Kind="Pencil" />
+                                </materialDesign:ToggleButtonAssist.OnContent>
+                            </ToggleButton>
+                        </StackPanel>
+
+                        <TextBox Name="txtSearch" TextChanged="TxtSearch_TextChanged"
+                            materialDesign:HintAssist.Hint="Tìm kiếm" Width="200" HorizontalAlignment="Left" Margin="10 0 0 0"
+                            Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                         
+                        </TextBox>
+
+                    </DockPanel>
+                    <DataGrid Grid.Row="1" Name="tableDataGrid" Margin="0 8 0 50" 
+                    CanUserSortColumns="True"
+                    CanUserAddRows="False" 
+                    AutoGenerateColumns="False"          
+                    IsReadOnly="{Binding ElementName=tBtnEdit, Path=IsChecked}"
+                              >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
+                            <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}"/>
+
+                            <DataGridComboBoxColumn Header="Category" x:Name="cbBoxCol" SelectedItemBinding="{Binding Position}" TextBinding="{Binding Category}">
+                                
+                            </DataGridComboBoxColumn>
+
+                            <DataGridTextColumn Header="PurchaseCost" Binding="{Binding PurchaseCost}"/>
+                            <DataGridTextColumn Header="SaleCost" Binding="{Binding SaleCost}"/>
+                            <DataGridTemplateColumn Header="Dated" IsReadOnly="{Binding ElementName=tBtnEdit, Path=IsChecked}">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding Dated}" BorderThickness="0"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <!--<DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="11" Padding="5" Background="White" Margin="5"  Grid.Row="1"/>-->
+                </Grid>
+
+            </materialDesign:Card>
