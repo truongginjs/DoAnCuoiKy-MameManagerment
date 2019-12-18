@@ -6,18 +6,17 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Design.Model
 {
-    public class Game: BaseModel
+    public class Game : BaseModel
     {
         public string detail { get; set; }
         [Required]
         public int amount { get; set; }
         [Required]
         public string publisher { get; set; }
-        [Required]
         public Category category { get; set; }
         [Required]
-        public int purchaseCost { get; set; }
+        public long purchaseCost { get; set; }
         [Required]
-        public int SaleCost { get; set; }
+        public long SaleCost { get; set; }
     }
 }

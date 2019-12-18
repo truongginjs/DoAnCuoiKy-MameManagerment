@@ -58,4 +58,3 @@ C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design
 C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\obj\Debug\Design.exe
 C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\obj\Debug\Design.pdb
 C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\obj\Debug\Design.Migrations.firstMigration.resources
-C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\obj\Debug\Design.Migrations.firstMigration1.resources

@@ -9,5 +9,6 @@ namespace Design.Model
     public class Category: BaseModel
     {
         string detail { get; set; }
+        public ICollection<Game> games { get; set; }
     }
 }

@@ -30,8 +30,8 @@
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <StackPanel>
-                    <Label Height="30" Grid.Row="0"/>
-                    <materialDesign:Chip x:Name="Chip" Content="Chọn đường dẫn..."  Width="400" HorizontalAlignment="Center" IconBackground="{DynamicResource PrimaryHueDarkBrush}" ToolTip="Chọn file"
+                    <Label Height="30" Grid.Row="0" Name="txtTest"/>                    
+                        <materialDesign:Chip x:Name="Chip" Content="Chọn đường dẫn..."  Width="400" HorizontalAlignment="Center" IconBackground="{DynamicResource PrimaryHueDarkBrush}" ToolTip="Chọn file"
                                           IconForeground="{DynamicResource PrimaryHueDarkForegroundBrush}" Click="Chip_Click">
                         <materialDesign:Chip.Icon>
                             <materialDesign:PackIcon Kind="FileImport"></materialDesign:PackIcon>

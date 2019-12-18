@@ -15,6 +15,7 @@ namespace Design.Model
         public long id { get; set; }
         [Required]
         public string name { get; set; }
-        public DateTime dateOfBirth { get; set; }
+        public DateTime dateOfBirth { get; set; } = DateTime.Now;
+
     }
 }

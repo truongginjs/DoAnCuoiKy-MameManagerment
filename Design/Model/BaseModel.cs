@@ -11,7 +11,8 @@ namespace Design.Model
     {
         [Key]
         public long id { get; set; }
+        [Required]
         public string name { get; set; }
-        public bool Deleted { get; set; }
+        public bool Deleted { get; set; } = false;
     }
 }

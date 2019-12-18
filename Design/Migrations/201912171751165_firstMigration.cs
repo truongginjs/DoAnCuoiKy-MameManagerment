@@ -12,7 +12,7 @@
                 c => new
                     {
                         id = c.Long(nullable: false, identity: true),
-                        name = c.String(),
+                        name = c.String(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
@@ -25,9 +25,9 @@
                         detail = c.String(),
                         amount = c.Int(nullable: false),
                         publisher = c.String(nullable: false),
-                        purchaseCost = c.Int(nullable: false),
-                        SaleCost = c.Int(nullable: false),
-                        name = c.String(),
+                        purchaseCost = c.Long(nullable: false),
+                        SaleCost = c.Long(nullable: false),
+                        name = c.String(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         category_id = c.Long(nullable: false),
                     })
@@ -50,12 +50,11 @@
                 c => new
                     {
                         id = c.Long(nullable: false, identity: true),
-                        amount = c.Int(nullable: false),
-                        deposit = c.Int(nullable: false),
+                        deposit = c.Long(nullable: false),
                         placePayment = c.Int(nullable: false),
                         modePayment = c.Int(nullable: false),
                         dateOfTrans = c.DateTime(nullable: false),
-                        name = c.String(),
+                        name = c.String(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id);
