@@ -8,22 +8,26 @@ using Design.Model;
 
 namespace Design.Context
 {
-    public class ShopGameContext: DbContext 
+    public class ShopGameContext : DbContext
     {
-        public ShopGameContext(): base("DBGames")
+        public ShopGameContext() : base("DBGames")
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Game>()
                 .HasRequired<Category>(g => g.category)
-                .WithMany(c => c.games);
+                .WithMany(c => c.games)
+                .HasForeignKey<long>(g => g.CategoryId)
+                .WillCascadeOnDelete(); 
+
+
         }
 
-        public DbSet<Game> games {  get; set; }
+        public DbSet<Game> games { get; set; }
         public DbSet<Transaction> transactions { get; set; }
         public DbSet<Category> categories { get; set; }
         public DbSet<Human> humen { get; set; }
-        
+
     }
 }

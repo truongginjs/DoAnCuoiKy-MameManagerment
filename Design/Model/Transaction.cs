@@ -9,6 +9,8 @@ namespace Design.Model
 {
     public class Transaction: BaseModel
     {
+        [Key]
+        public long id { get; set; }
         [Required]
         public Dictionary<Game,int> games { get; set; }
         public long deposit { get; set; } = 0;

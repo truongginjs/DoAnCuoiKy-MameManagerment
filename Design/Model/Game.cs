@@ -8,15 +8,21 @@ namespace Design.Model
 {
     public class Game : BaseModel
     {
+        [Key]
+        public long id { get; set; }
         public string detail { get; set; }
         [Required]
         public int amount { get; set; }
         [Required]
         public string publisher { get; set; }
-        public Category category { get; set; }
+
+
         [Required]
         public long purchaseCost { get; set; }
         [Required]
         public long SaleCost { get; set; }
+
+        public long CategoryId { get; set; }
+        public Category category { get; set; }
     }
 }

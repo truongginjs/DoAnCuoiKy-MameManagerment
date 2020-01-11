@@ -104,9 +104,9 @@
     <Compile Include="DrawPieChart.xaml.cs">
       <DependentUpon>DrawPieChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912171751165_firstMigration.cs" />
-    <Compile Include="Migrations\201912171751165_firstMigration.designer.cs">
-      <DependentUpon>201912171751165_firstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201912180938309_firstMigration.cs" />
+    <Compile Include="Migrations\201912180938309_firstMigration.designer.cs">
+      <DependentUpon>201912180938309_firstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseModel.cs" />
@@ -204,8 +204,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201912171751165_firstMigration.resx">
-      <DependentUpon>201912171751165_firstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201912180938309_firstMigration.resx">
+      <DependentUpon>201912180938309_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

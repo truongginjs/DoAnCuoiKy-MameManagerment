@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Design.Model
 {
     public abstract class BaseModel
     {
-        [Key]
-        public long id { get; set; }
-        [Required]
+        
+      ////[Required]
+        [StringLength(450)]
+        [Index(IsUnique = true)]
         public string name { get; set; }
-        public bool Deleted { get; set; } = false;
+        public bool deleted { get; set; } = false;
     }
 }

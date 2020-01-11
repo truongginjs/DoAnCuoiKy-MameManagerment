@@ -11,11 +11,12 @@
                 "dbo.Categories",
                 c => new
                     {
-                        id = c.Long(nullable: false, identity: true),
-                        name = c.String(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
+                        CategoryId = c.Long(nullable: false, identity: true),
+                        name = c.String(maxLength: 450),
+                        deleted = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.CategoryId)
+                .Index(t => t.name, unique: true);
             
             CreateTable(
                 "dbo.Games",
@@ -27,13 +28,14 @@
                         publisher = c.String(nullable: false),
                         purchaseCost = c.Long(nullable: false),
                         SaleCost = c.Long(nullable: false),
-                        name = c.String(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
-                        category_id = c.Long(nullable: false),
+                        CategoryId = c.Long(nullable: false),
+                        name = c.String(maxLength: 450),
+                        deleted = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.id)
-                .ForeignKey("dbo.Categories", t => t.category_id, cascadeDelete: true)
-                .Index(t => t.category_id);
+                .ForeignKey("dbo.Categories", t => t.CategoryId, cascadeDelete: true)
+                .Index(t => t.CategoryId)
+                .Index(t => t.name, unique: true);
             
             CreateTable(
                 "dbo.Humen",
@@ -54,17 +56,21 @@
                         placePayment = c.Int(nullable: false),
                         modePayment = c.Int(nullable: false),
                         dateOfTrans = c.DateTime(nullable: false),
-                        name = c.String(nullable: false),
-                        Deleted = c.Boolean(nullable: false),
+                        name = c.String(maxLength: 450),
+                        deleted = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.id);
+                .PrimaryKey(t => t.id)
+                .Index(t => t.name, unique: true);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.Games", "category_id", "dbo.Categories");
-            DropIndex("dbo.Games", new[] { "category_id" });
+            DropForeignKey("dbo.Games", "CategoryId", "dbo.Categories");
+            DropIndex("dbo.Transactions", new[] { "name" });
+            DropIndex("dbo.Games", new[] { "name" });
+            DropIndex("dbo.Games", new[] { "CategoryId" });
+            DropIndex("dbo.Categories", new[] { "name" });
             DropTable("dbo.Transactions");
             DropTable("dbo.Humen");
             DropTable("dbo.Games");
