@@ -25,12 +25,12 @@ namespace Design
     public partial class TransactionWindow : UserControl
     {
         AddScreen a = null;
-        DataProvider dp = new DataProvider();
+        //DataProvider dp = new DataProvider();
 
-        DataProvider dp1 = new DataProvider();
-        DataProvider dp2 = new DataProvider();
-        DataProvider dp3 = new DataProvider();
-        DataProvider dp4 = new DataProvider();
+        //DataProvider dp1 = new DataProvider();
+        //DataProvider dp2 = new DataProvider();
+        //DataProvider dp3 = new DataProvider();
+        //DataProvider dp4 = new DataProvider();
 
         public TransactionWindow()
         {
@@ -96,77 +96,77 @@ namespace Design
 
         private void cbbSales_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (txtSubT.Text.Length > 0 && cbbSales.SelectedIndex > -1)
-            {
-                switch (cbbSales.SelectedIndex)
-                {
-                    case 0:
-                        //none
-                        txtSales.Text = "0";
-                        break;
-                    case 1:
-                        //blackFriday
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.2).ToString();
-                        break;
-                    case 2:
-                        //cyperMonday
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.15).ToString();
-                        break;
-                    case 3:
-                        //Coupon
-                        txtSales.Text = (int.Parse((txtSubT.Text)) - 20000).ToString();
-                        break;
-                    case 4:
-                        //voicher
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.2).ToString();
+            //if (txtSubT.Text.Length > 0 && cbbSales.SelectedIndex > -1)
+            //{
+            //    switch (cbbSales.SelectedIndex)
+            //    {
+            //        case 0:
+            //            //none
+            //            txtSales.Text = "0";
+            //            break;
+            //        case 1:
+            //            //blackFriday
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.2).ToString();
+            //            break;
+            //        case 2:
+            //            //cyperMonday
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.15).ToString();
+            //            break;
+            //        case 3:
+            //            //Coupon
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) - 20000).ToString();
+            //            break;
+            //        case 4:
+            //            //voicher
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.2).ToString();
 
-                        break;
-                }
-            }
+            //            break;
+            //    }
+            //}
 
 
         }
         private void TxtSubT_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtSubT.Text.Length > 0 && cbbSales.SelectedIndex > -1)
-            {
-                switch (cbbSales.SelectedIndex)
-                {
-                    case 0:
-                        //none
-                        txtSales.Text = "0";
-                        break;
-                    case 1:
-                        //blackFriday
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.8).ToString();
-                        break;
-                    case 2:
-                        //cyperMonday
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.85).ToString();
-                        break;
-                    case 3:
-                        //Coupon
-                        txtSales.Text = (int.Parse((txtSubT.Text)) - 20000).ToString();
-                        break;
-                    case 4:
-                        //voicher
-                        txtSales.Text = (int.Parse((txtSubT.Text)) * 0.8).ToString();
+            //if (txtSubT.Text.Length > 0 && cbbSales.SelectedIndex > -1)
+            //{
+            //    switch (cbbSales.SelectedIndex)
+            //    {
+            //        case 0:
+            //            //none
+            //            txtSales.Text = "0";
+            //            break;
+            //        case 1:
+            //            //blackFriday
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.8).ToString();
+            //            break;
+            //        case 2:
+            //            //cyperMonday
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.85).ToString();
+            //            break;
+            //        case 3:
+            //            //Coupon
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) - 20000).ToString();
+            //            break;
+            //        case 4:
+            //            //voicher
+            //            txtSales.Text = (int.Parse((txtSubT.Text)) * 0.8).ToString();
 
-                        break;
-                }
-            }
-            if (txtSubT.Text.Length > 0 && txtSales.Text.Length > 0)
-            {
-                txtTotal.Text = (int.Parse(txtSubT.Text) - int.Parse(txtSales.Text)).ToString();
-            }
+            //            break;
+            //    }
+            //}
+            //if (txtSubT.Text.Length > 0 && txtSales.Text.Length > 0)
+            //{
+            //    txtTotal.Text = (int.Parse(txtSubT.Text) - int.Parse(txtSales.Text)).ToString();
+            //}
         }
 
         private void TxtSales_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtSubT.Text.Length > 0 && txtSales.Text.Length > 0)
-            {
-                txtTotal.Text = (int.Parse(txtSubT.Text) - int.Parse(txtSales.Text)).ToString();
-            }
+            //if (txtSubT.Text.Length > 0 && txtSales.Text.Length > 0)
+            //{
+            //    txtTotal.Text = (int.Parse(txtSubT.Text) - int.Parse(txtSales.Text)).ToString();
+            //}
         }
 
         private void BtnImport_Click(object sender, RoutedEventArgs e)

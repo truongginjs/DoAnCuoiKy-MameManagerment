@@ -25,69 +25,66 @@ namespace Design
     /// </summary>
     public partial class DrawLineChart : UserControl
     {
-        DataProvider dp2 = new DataProvider();
-        DataProvider dp3 = new DataProvider();
         public DrawLineChart()
         {
-            
+
             InitializeComponent();
-            BindGrid();
-            //chart1
-            string[] temp1 = dp2.Get().AsEnumerable().Select(r => r.Field<DateTime>("Dated")).Select(r => r.ToString("MM/dd/yyyy")).ToArray();
-            Labels = temp1;
-            List<double> list2 = dp2.Get().AsEnumerable().Select(r => r.Field<double>("sums")).ToList();
+            //    BindGrid();
+            //    //chart1
+            //    string[] temp1 = dp2.Get().AsEnumerable().Select(r => r.Field<DateTime>("Dated")).Select(r => r.ToString("MM/dd/yyyy")).ToArray();
+            //    Labels = temp1;
+            //    List<double> list2 = dp2.Get().AsEnumerable().Select(r => r.Field<double>("sums")).ToList();
 
-            Formatter = value => value.ToString();
+            //    Formatter = value => value.ToString();
 
-            SeriesCollection = new SeriesCollection
-            {
+            //    SeriesCollection = new SeriesCollection
+            //    {
 
-                new LineSeries
-                {
-                    Title = "doanh thu",
+            //        new LineSeries
+            //        {
+            //            Title = "doanh thu",
 
-                    Values =new ChartValues<double>(list2),
+            //            Values =new ChartValues<double>(list2),
 
-                    //DataLabels = true,
+            //            //DataLabels = true,
 
-                },
+            //        },
 
-            };
-            //chart2
-            string[] temp2 = dp3.Get().AsEnumerable().Select(r => r.Field<DateTime>("Dated")).Select(r => r.ToString("MM/dd/yyyy")).ToArray();
-            Labels1 = temp2;
-            List<double> list3 = dp3.Get().AsEnumerable().Select(r => r.Field<double>("sums")).ToList();
+            //    };
+            //    //chart2
+            //    string[] temp2 = dp3.Get().AsEnumerable().Select(r => r.Field<DateTime>("Dated")).Select(r => r.ToString("MM/dd/yyyy")).ToArray();
+            //    Labels1 = temp2;
+            //    List<double> list3 = dp3.Get().AsEnumerable().Select(r => r.Field<double>("sums")).ToList();
 
-            Formatter = value => value.ToString();
+            //    Formatter = value => value.ToString();
 
-            SeriesCollection1 = new SeriesCollection
-            {
+            //    SeriesCollection1 = new SeriesCollection
+            //    {
 
-                new LineSeries
-                {
-                    Title = "Hàng hóa",
+            //        new LineSeries
+            //        {
+            //            Title = "Hàng hóa",
 
-                    Values =new ChartValues<double>(list3),
+            //            Values =new ChartValues<double>(list3),
 
-                    //DataLabels = true,
+            //            //DataLabels = true,
 
-                },
+            //        },
 
-            };
-        }
+            //    };
+            //}
 
-        public SeriesCollection SeriesCollection { get; set; }
-        public string[] Labels { get; set; }
-        public Func<double, string> Formatter { get; set; }
+            //public SeriesCollection SeriesCollection { get; set; }
+            //public string[] Labels { get; set; }
+            //public Func<double, string> Formatter { get; set; }
 
-        public SeriesCollection SeriesCollection1 { get; set; }
-        public string[] Labels1 { get; set; }
-        public Func<double, string> Formatter1 { get; set; }
-        private void BindGrid()
-        {
-            dp2.withQuery("select Trans.Dated as Dated, sum(Total) as SUMS  from Trans GROUP BY Trans.Dated");
-            dp3.withQuery("select Trans.Dated as Dated, sum(Amount) as SUMS  from Trans GROUP BY Trans.Dated");
-
+            //public SeriesCollection SeriesCollection1 { get; set; }
+            //public string[] Labels1 { get; set; }
+            //public Func<double, string> Formatter1 { get; set; }
+            //private void BindGrid()
+            //{
+            //    dp2.withQuery("select Trans.Dated as Dated, sum(Total) as SUMS  from Trans GROUP BY Trans.Dated");
+            //    dp3.withQuery("select Trans.Dated as Dated, sum(Amount) as SUMS  from Trans GROUP BY Trans.Dated");
         }
     }
 }

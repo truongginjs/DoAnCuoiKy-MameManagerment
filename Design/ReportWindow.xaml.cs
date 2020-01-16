@@ -30,7 +30,7 @@ namespace Design
 
             dpFromDate.SelectedDate = dpToDate.SelectedDate = DateTime.Now;
 
-            DataContext = new DrawColummChart(dpFromDate, dpToDate);
+            DataContext = new DrawColumnChart(dpFromDate, dpToDate);
         }
 
 
@@ -42,7 +42,7 @@ namespace Design
 
         private void BtnColumnChart_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new DrawColummChart(dpFromDate, dpToDate);
+            DataContext = new DrawColumnChart(dpFromDate, dpToDate);
            
         }
         private void BtnPieChart_Click(object sender, RoutedEventArgs e)

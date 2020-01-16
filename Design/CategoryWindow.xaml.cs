@@ -24,16 +24,16 @@ namespace Design
     public partial class CategoryWindow : UserControl
     {
         AddScreen a = null;
-        DataProvider dp1;
-        DataProvider dp;
-        DataProvider dp2;
+        //DataProvider dp1;
+        //DataProvider dp;
+        //DataProvider dp2;
         public CategoryWindow()
         {
             InitializeComponent();
-            dp1 = new DataProvider();
-            DataProvider dp = new DataProvider();
-            DataProvider dp2 = new DataProvider();
-            BindGird();
+            //dp1 = new DataProvider();
+            //DataProvider dp = new DataProvider();
+            //DataProvider dp2 = new DataProvider();
+            //BindGird();
 
 
             //txtID.Text = (Common.Instance.categories.Count()+1).ToString();

@@ -95,8 +95,8 @@
     </Compile>
     <Compile Include="Context\Common.cs" />
     <Compile Include="Context\ShopGameContext.cs" />
-    <Compile Include="DrawColummChart.xaml.cs">
-      <DependentUpon>DrawColummChart.xaml</DependentUpon>
+    <Compile Include="DrawColumnChart.xaml.cs">
+      <DependentUpon>DrawColumnChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="DrawLineChart.xaml.cs">
       <DependentUpon>DrawLineChart.xaml</DependentUpon>
@@ -122,13 +122,13 @@
     <Compile Include="ReportWindow.xaml.cs">
       <DependentUpon>ReportWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatisticWindow.xaml.cs">
-      <DependentUpon>StatisticWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TransactionWindow.xaml.cs">
       <DependentUpon>TransactionWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\PieViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\ColumnViewModel.cs" />
+    <Compile Include="ViewModel\Statistics\LineViewModel.cs" />
     <Compile Include="ViewModel\TransactionVIewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\CategoryVIewModel.cs" />
@@ -141,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DrawColummChart.xaml">
+    <Page Include="DrawColumnChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -182,10 +182,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResourceXAML\MainResource.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="StatisticWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

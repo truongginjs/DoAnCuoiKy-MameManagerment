@@ -41,11 +41,11 @@
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>
                         <Label HorizontalAlignment="Center" FontWeight="SemiBold">Game</Label>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto" >
-                            <ListView   ItemsSource="{Binding GameInStore}" SelectedItem="{Binding SelectedStore, Mode=TwoWay}" Width="164" Height="112" >
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Height="100" Width="160">
+                            <ListView ItemsSource="{Binding GameInStore}" SelectedItem="{Binding SelectedStore, Mode=TwoWay}" >
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                                         <GridViewColumn Header="SaleCost" DisplayMemberBinding="{Binding SaleCost}"></GridViewColumn>
 
                                     </GridView>
@@ -64,11 +64,11 @@
                     </StackPanel>
                     <StackPanel>
                         <Label HorizontalAlignment="Center" FontWeight="Bold">Cart</Label>
-                        <ScrollViewer Height="100" VerticalScrollBarVisibility="Auto" >
-                            <ListView ItemsSource="{Binding GameInCart}" SelectedItem="{Binding SelectedCart, Mode=TwoWay}" Width="169" Height="92" >
+                        <ScrollViewer Height="100" Width="160" VerticalScrollBarVisibility="Auto">
+                            <ListView ItemsSource="{Binding GameInCart}" SelectedItem="{Binding SelectedCart, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Game.Name}"></GridViewColumn>
                                         <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"  ></GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -83,7 +83,7 @@
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock Text="Place of payment:"></TextBlock>
-                    <ComboBox ItemsSource="{Binding Place}" SelectedIndex="{Binding SelectedPlace}" materialDesign:HintAssist.Hint=" địa điểm" Width="96" SelectionChanged="CbbPlance_SelectionChanged">
+                    <ComboBox ItemsSource="{Binding Place}" SelectedItem="{Binding SelectedPlace}" materialDesign:HintAssist.Hint=" địa điểm" Width="96">
                         
                     </ComboBox>
                     <TextBlock Text="Deposit:" />
@@ -96,7 +96,7 @@
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Sales:"></TextBlock>
-                    <ComboBox x:Name="cbbSales" materialDesign:HintAssist.Hint="Loại sale" Width="140" SelectionChanged="cbbSales_SelectionChanged">
+                    <ComboBox SelectedIndex="{Binding KindOfSales}" materialDesign:HintAssist.Hint="Loại sale" Width="140" >
                         <ComboBoxItem>
                             None
                         </ComboBoxItem>
@@ -129,12 +129,12 @@
                         <TextBlock Text="Total:"/>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox x:Name="txtSubT" materialDesign:HintAssist.Hint="Tổng số tiền" Width="100" IsEnabled="False" TextChanged="TxtSubT_TextChanged" FontSize="15">
+                        <TextBox Text="{Binding SubTotal, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" materialDesign:HintAssist.Hint="Tổng số tiền" Width="100" IsEnabled="False" FontSize="15">
 
                         </TextBox>
-                        <TextBox x:Name="txtSales" materialDesign:HintAssist.Hint="Số tiền được giảm" Width="100" IsEnabled="False" TextChanged="TxtSales_TextChanged"/>
+                        <TextBox Text="{Binding Sales}" materialDesign:HintAssist.Hint="Số tiền được giảm" Width="100" IsEnabled="False" FontSize="15"/>
 
-                        <TextBox x:Name="txtTotal" materialDesign:HintAssist.Hint="Số tiền phải trả" Width="100" IsEnabled="False" FontSize="15" Foreground="Red"/>
+                        <TextBox Text="{Binding Total}" materialDesign:HintAssist.Hint="Số tiền phải trả" Width="100" IsEnabled="False" FontSize="15" Foreground="Red"/>
 
                     </StackPanel>
 
@@ -204,10 +204,11 @@
 
                 </DockPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
-                    <ListView ItemsSource="{Binding ListTransaction}" SelectedItem="{Binding Selectedtransaction, Mode=OneWayToSource}" Height="410">
+                    <ListView ItemsSource="{Binding ListTransaction}" SelectedItem="{Binding SelectedTrans, Mode=OneWayToSource}" Height="410">
                         <ListView.View>
                             <GridView>
                                 <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
                                 <GridViewColumn Header="Deposit" DisplayMemberBinding="{Binding Deposit}"></GridViewColumn>
                                 <GridViewColumn Header="payment Amount" DisplayMemberBinding="{Binding paymentAmount}"/>
                                 <GridViewColumn Header="Dated" DisplayMemberBinding="{Binding DateOfTrans}"></GridViewColumn>

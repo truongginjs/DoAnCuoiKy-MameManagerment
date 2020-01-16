@@ -3,6 +3,7 @@ using Design.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,14 @@ namespace Design.ViewModel
             get => selectedTrans; set
             {
                 selectedTrans = value;
+                try
+                {
+                    SelectedMode = selectedTrans.ModePayment;
+                    SelectedPlace = SelectedTrans.PlacePayment;
+                    GameInCart.Clear();
+                    selectedTrans.Games.ToList().ForEach(g => GameInCart.Add(g));
+                }
+                catch { };
 
                 OnPropertyChanged();
             }
@@ -90,45 +99,134 @@ namespace Design.ViewModel
             }
         }
 
+        private long subTotal;
+        public string SubTotal
+        {
+            get => subTotal.ToString(); set
+            {
+                subTotal = long.Parse(value);
+                OnPropertyChanged();
+            }
+        }
+
+        private long sales;
+        public string Sales
+        {
+            get =>sales.ToString(); set
+            {
+                sales = long.Parse(value);
+                OnPropertyChanged();
+            }
+        }
+
+        private long total;
+        public string Total
+        {
+            get => total.ToString(); set
+            {
+                total = long.Parse(value);
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        public int kindOfSales;
+        public int KindOfSales { get => kindOfSales; set {
+                kindOfSales = value;
+                OnPropertyChanged();
+                switch (kindOfSales)
+                {
+                    case 0:
+                        //none
+                        Sales = "0";
+                        break;
+                    case 1:
+                        //blackFriday
+                        Sales = (subTotal * 0.2).ToString();
+                        break;
+                    case 2:
+                        //cyperMonday
+                        Sales = (subTotal * 0.15).ToString();
+                        break;
+                    case 3:
+                        //Coupon
+                        Sales = (subTotal - 20000).ToString();
+                        break;
+                    case 4:
+                        //voicher
+                        Sales = (subTotal * 0.2).ToString();
+                        break;
+                }
+                SetTotal();
+            }
+        }
+
+        private string searchCommand;
+        public string SearchCommand {
+            get => searchCommand; set
+            {
+                searchCommand = value;      
+                OnPropertyChanged();
+            }
+        }
+
         private PlacePayment selectedPlace { get; set; }
         public PlacePayment SelectedPlace { get => selectedPlace; set { selectedPlace = value; } }
 
         public ICommand AddToCart { get; set; }
         public ICommand RemoveToCart { get; set; }
-        public ICommand EditCommand { get; set; }
         public ICommand ClearFormCommand { get; set; }
         public ICommand ComfirmOrder { get; set; }
 
         
-        private string searchCommand;
-        public string SearchCommand {
-            get => searchCommand; set
-            {
-                searchCommand = value;
-                
-                              
-                OnPropertyChanged();
-            }
-        }
 
         
 
         public TransactionViewModel()
         {
             LoadData();
-            EditCommand = new RelayCommand<object>(
+            ComfirmOrder = new RelayCommand<object>(
                 p => CheckDisplayIsOK()
                 , p =>
                 {
+                    try
+                    {
+                        var trans = GetTransaction();
+                        ListTransaction.Add(trans);
+                        Common.Instance.transactions.Add(trans);
+                        Common.Instance.SaveChanges();
+                    }
+                    catch (DbEntityValidationException e)
+                    {
+                        foreach (var eve in e.EntityValidationErrors)
+                        {
+                            Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                                eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                            foreach (var ve in eve.ValidationErrors)
+                            {
+                                Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                                    ve.PropertyName, ve.ErrorMessage);
+                            }
+                        }
+                    }
                     
                 });
             ClearFormCommand = new RelayCommand<object>(p => true, p => clearForm());
-            AddToCart = new RelayCommand<object>(            
-                p=>true,
+            AddToCart = new RelayCommand<object>(
+                p => true,
                 p =>
                 {
-                    var gameTran = new GameInTran { Game = SelectedStore, Amount = 1 };
-                    GameInCart.Add(gameTran);
+                    if (SelectedStore != null)
+                    {
+                        var gameTran = new GameInTran { Game = SelectedStore, Amount = 1, Name=SelectedStore.Name };
+                        GameInCart.Add(gameTran);
+                        long sum = 0;
+                        GameInCart.ToList().ForEach(g => sum += g.Game.SaleCost);
+                        SubTotal = sum.ToString();
+                        SetTotal();
+                    }
+                    OnPropertyChanged();
                 }
             );
             RemoveToCart = new RelayCommand<object>(
@@ -136,6 +234,12 @@ namespace Design.ViewModel
                 p =>
                 {
                     GameInCart.Remove(selectedCart);
+                    long sum = 0;
+                    GameInCart.ToList().ForEach(g => sum += g.Game.SaleCost);
+                    SubTotal = sum.ToString();
+                    SetTotal();
+
+                    OnPropertyChanged();
                 }
             );
         }
@@ -154,7 +258,7 @@ namespace Design.ViewModel
         }
         private long CalculateAmount()
         {
-            return 0;
+            return total;
         }
 
         private void clearForm()
@@ -164,8 +268,9 @@ namespace Design.ViewModel
 
         private bool CheckDisplayIsOK()
         {
-            return true;
-
+            if (GameInCart.Count > 0 && Mode!=null && place!=null&& total>0)
+                return true;
+            return false;
         }
 
         void LoadData()
@@ -176,6 +281,9 @@ namespace Design.ViewModel
             games.ForEach(g => GameInStore.Add(g));
         }
 
-
+        void SetTotal()
+        {
+            Total = (subTotal - sales).ToString();
+        }
     }
 }
