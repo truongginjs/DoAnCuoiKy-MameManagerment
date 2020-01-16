@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Design"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:myUC="clr-namespace:Design.myUC" 
+             DataContext="{StaticResource TransactionVMUC}"
             
              mc:Ignorable="d"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -25,7 +26,7 @@
 
         </Grid.ColumnDefinitions>
         <materialDesign:Card Grid.Column="1" Width="{Binding Path=width, ElementName=Grid}" Height="{Binding Path=height, ElementName=G}" VerticalAlignment="Stretch" Margin="0,0,2.2,-0.4" >
-            <StackPanel Margin="5">
+            <StackPanel Margin="5" VerticalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="StackPanel">
                         <Setter Property="Margin" Value="0 0 0 10"/>
@@ -35,50 +36,62 @@
                         <Setter Property="VerticalAlignment" Value="Center"/>
                     </Style>
                 </StackPanel.Resources>
-                <TextBlock Text="Thêm hóa đơn" Margin="0 0 0 20"/>
+                <TextBlock FontWeight="Bold" Text="Thêm hóa đơn" Margin="0 0 0 20"/>
+
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="ID invoice:"></TextBlock>
-                    <TextBox x:Name="txtId" Width="62" IsEnabled="False"></TextBox>
+                    <StackPanel>
+                        <Label HorizontalAlignment="Center" FontWeight="SemiBold">Game</Label>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" >
+                            <ListView   ItemsSource="{Binding GameInStore}" SelectedItem="{Binding SelectedStore, Mode=TwoWay}" Width="164" Height="112" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                        <GridViewColumn Header="SaleCost" DisplayMemberBinding="{Binding SaleCost}"></GridViewColumn>
+
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </StackPanel>
+                    <StackPanel Width="56" VerticalAlignment="Center">
+                        <Button Command="{Binding AddToCart}" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">                            
+                        <materialDesign:PackIcon Kind="ArrowRightBold" />
+                        </Button>
+                        <TextBlock/>
+                        <Button Command="{Binding RemoveToCart}" Style="{StaticResource MaterialDesignFloatingActionMiniLightButton}" ToolTip="MaterialDesignFloatingActionMiniLightButton">
+                            <materialDesign:PackIcon Kind="ArrowLeftBold" />
+                        </Button>
+                    </StackPanel>
+                    <StackPanel>
+                        <Label HorizontalAlignment="Center" FontWeight="Bold">Cart</Label>
+                        <ScrollViewer Height="100" VerticalScrollBarVisibility="Auto" >
+                            <ListView ItemsSource="{Binding GameInCart}" SelectedItem="{Binding SelectedCart, Mode=TwoWay}" Width="169" Height="92" >
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                        <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"  ></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </ScrollViewer>
+                    </StackPanel>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="IDGame:"></TextBlock>
-                    <ComboBox x:Name="cbbIdG" materialDesign:HintAssist.Hint="ID game"  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26" SelectionChanged="CbbIdG_SelectionChanged"/>
-                    <TextBlock Text="Name:"/>
-                    <ComboBox x:Name="cbbNameGame" materialDesign:HintAssist.Hint="Tên game"  IsEditable="True" materialDesign:HintAssist.HintOpacity=".26" Width="192" SelectedIndex="{Binding Path=SelectedIndex, ElementName=cbbIdG, Mode=TwoWay}"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Amount: "></TextBlock>
-                    <TextBox x:Name="txtAmount" Text="1"  Width="67" materialDesign:HintAssist.Hint="Số lượng mua" PreviewTextInput="TxtAmount_PreviewTextInput" TextChanged="TxtAmount_TextChanged"/>
+                    <TextBlock Text="Mode of payment:"></TextBlock>
+                    <ComboBox ItemsSource="{Binding Mode}" SelectedItem="{Binding SelectedMode}" materialDesign:HintAssist.Hint="Hình thức" Width="110"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
                     <TextBlock Text="Place of payment:"></TextBlock>
-                    <ComboBox x:Name="cbbPlance" materialDesign:HintAssist.Hint=" địa điểm" Width="96" SelectionChanged="CbbPlance_SelectionChanged">
-                        <ComboBoxItem>
-                            Trực tiếp
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Giao hàng
-                        </ComboBoxItem>
+                    <ComboBox ItemsSource="{Binding Place}" SelectedIndex="{Binding SelectedPlace}" materialDesign:HintAssist.Hint=" địa điểm" Width="96" SelectionChanged="CbbPlance_SelectionChanged">
+                        
                     </ComboBox>
                     <TextBlock Text="Deposit:" />
 
 
-                    <TextBox x:Name="txtDeposit" materialDesign:HintAssist.Hint="Số tiền cọc" IsEnabled="False" PreviewTextInput="TxtDeposit_PreviewTextInput"/>
+                    <TextBox materialDesign:HintAssist.Hint="Số tiền cọc" Text="{Binding Deposit}"/>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Mode of payment:"></TextBlock>
-                    <ComboBox x:Name="cbbMode" materialDesign:HintAssist.Hint="Hình thức" Width="110">
-                        <ComboBoxItem>
-                            Tiền mặt
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Chuyển khoản
-                        </ComboBoxItem>
-                    </ComboBox>
-                    
-                </StackPanel>
                
 
                 <StackPanel Orientation="Horizontal">
@@ -128,7 +141,7 @@
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button x:Name="btnOrder" Content="Confirm Order" Click="BtnOrder_Click">
+                    <Button Command="{Binding ComfirmOrder}" Content="Confirm Order">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Style.Triggers>
@@ -160,7 +173,7 @@
                             </Style>
                         </Button.Style>
                     </Button>
-                    <Button x:Name="btnCancel" Content="Cancel" Width="{Binding Path=Width, ElementName=btnOrder}" Margin="50 0 0 0" Click="BtnCancel_Click"/>
+                    <Button Command="{Binding Cancel}" Content="Cancel" Width="{Binding Path=Width, ElementName=btnOrder}" Margin="50 0 0 0" Click="BtnCancel_Click"/>
 
                 </StackPanel>
             </StackPanel>
@@ -190,30 +203,18 @@
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 </DockPanel>
-                <DataGrid Grid.Row="1" x:Name="tableDataGrid" Margin="0 8 0 8"
-                    AutoGenerateColumns="True"
-                    CanUserSortColumns="True"
-                    CanUserAddRows="False"                             
-                    IsReadOnly="True" 
-                              >
-                    <!--<DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
-                        <DataGridTextColumn Header="Publisher" Binding="{Binding Publisher}"/>
-                        <DataGridTextColumn Header="Category" Binding="{Binding Category}"/>
-                        <DataGridTextColumn Header="PurchaseCost" Binding="{Binding PurchaseCost}"/>
-                        <DataGridTextColumn Header="SaleCost" Binding="{Binding SaleCost}"/>
-                        <DataGridTemplateColumn Header="Dated" IsReadOnly="{Binding ElementName=tBtnEdit, Path=IsChecked}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <DatePicker SelectedDate="{Binding Dated}" BorderThickness="0"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                    </DataGrid.Columns>-->
-                </DataGrid>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <ListView ItemsSource="{Binding ListTransaction}" SelectedItem="{Binding Selectedtransaction, Mode=OneWayToSource}" Height="410">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Id" DisplayMemberBinding="{Binding Id}"></GridViewColumn>
+                                <GridViewColumn Header="Deposit" DisplayMemberBinding="{Binding Deposit}"></GridViewColumn>
+                                <GridViewColumn Header="payment Amount" DisplayMemberBinding="{Binding paymentAmount}"/>
+                                <GridViewColumn Header="Dated" DisplayMemberBinding="{Binding DateOfTrans}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
                 <!--<DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="11" Padding="5" Background="White" Margin="5"  Grid.Row="1"/>-->
             </Grid>
 

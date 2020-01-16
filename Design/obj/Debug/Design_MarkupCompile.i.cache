@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\obj\Debug\
+C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\
 Design
 none
 false
 DEBUG;TRACE
-C:\Users\Asus\Desktop\1612760-Final-ManagementSystem\Source\managementApp\Design\App.xaml
-11-969415982
+C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\App.xaml
+12-41627942
 
-341239269756
-272142217968
-AddScreen.xaml;CategoryWindow.xaml;DrawColummChart.xaml;DrawLineChart.xaml;DrawPieChart.xaml;MainWindow.xaml;myUC\CtrlBarUC.xaml;ProductWindow.xaml;ReportWindow.xaml;StatisticWindow.xaml;TransactionWindow.xaml;
+38-182124660
+27509205431
+AddScreen.xaml;CategoryWindow.xaml;DrawColummChart.xaml;DrawLineChart.xaml;DrawPieChart.xaml;MainWindow.xaml;myUC\CtrlBarUC.xaml;ProductWindow.xaml;ReportWindow.xaml;ResourceXAML\MainResource.xaml;StatisticWindow.xaml;TransactionWindow.xaml;
 
 False
 

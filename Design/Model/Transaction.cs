@@ -9,11 +9,13 @@ namespace Design.Model
 {
     public class Transaction: BaseModel
     {
-        [Required]
-        public Dictionary<Game,int> games { get; set; }
-        public long deposit { get; set; } = 0;
-        public PlacePayment placePayment { get; set; } = PlacePayment.TrucTiep;
-        public ModePayment modePayment { get; set; } = ModePayment.TienMat;
-        public DateTime dateOfTrans { get; set; } = DateTime.Now;
+        
+        public long Deposit { get; set; } = 0;
+        public PlacePayment PlacePayment { get; set; } = PlacePayment.TrucTiep;
+        public ModePayment ModePayment { get; set; } = ModePayment.TienMat;
+        public DateTime DateOfTrans { get; set; } = DateTime.Now;
+        public long paymentAmount { get; set; }
+        public virtual ICollection<GameInTran> Games { get; set; }
+        
     }
 }

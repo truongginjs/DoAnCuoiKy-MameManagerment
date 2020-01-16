@@ -46,12 +46,11 @@ namespace Design
 
         private void Chip_Click(object sender, RoutedEventArgs e)
         {
-            Human temp = Common.Instance.humen.ToList().Where(p => p.name == "A").First();
-            txtTest.Content = temp.name+temp.dateOfBirth.ToString();
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Excel files (*.xls;*xlsx)|*.xls;*xlsx|All files (*.*)|*.*";
-            //if (openFileDialog.ShowDialog() == true)
-            //    Chip.Content = openFileDialog.FileName;
+
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Excel files (*.xls;*xlsx)|*.xls;*xlsx|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+                Chip.Content = openFileDialog.FileName;
         }
 
         private void View_Click(object sender, RoutedEventArgs e)

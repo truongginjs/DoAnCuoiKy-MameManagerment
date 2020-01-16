@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewmodel="clr-namespace:Design.ViewModel"
+                    xmlns:local="clr-namespace:Design.ResourceXAML">
+    <viewmodel:MainViewModel x:Key="MainVM"></viewmodel:MainViewModel>
+    <viewmodel:ProductViewModel x:Key="ProductVMUC"></viewmodel:ProductViewModel>
+    <viewmodel:CategoryViewModel x:Key="CategoryVMUC"></viewmodel:CategoryViewModel>
+    <viewmodel:TransactionViewModel x:Key="TransactionVMUC"></viewmodel:TransactionViewModel>
+
+
+
+</ResourceDictionary>

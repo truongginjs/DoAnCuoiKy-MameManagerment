@@ -19,6 +19,7 @@
         Title="MainWindow" Height="600" Width="1000"
         ResizeMode="NoResize"
         WindowStyle="None"
+        DataContext="{StaticResource MainVM}"
         WindowStartupLocation="CenterScreen">
     <!-- bỏ controlbar, viền 
         ResizeMode="NoResize"

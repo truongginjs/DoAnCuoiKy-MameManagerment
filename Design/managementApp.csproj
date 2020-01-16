@@ -104,14 +104,14 @@
     <Compile Include="DrawPieChart.xaml.cs">
       <DependentUpon>DrawPieChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201912171751165_firstMigration.cs" />
-    <Compile Include="Migrations\201912171751165_firstMigration.designer.cs">
-      <DependentUpon>201912171751165_firstMigration.cs</DependentUpon>
+    <Compile Include="Migrations\202001160322000_firstMigration.cs" />
+    <Compile Include="Migrations\202001160322000_firstMigration.designer.cs">
+      <DependentUpon>202001160322000_firstMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\Human.cs" />
+    <Compile Include="Model\GameInTrans.cs" />
     <Compile Include="Model\ModePayment.cs" />
     <Compile Include="Model\Game.cs" />
     <Compile Include="Model\PlacePayment.cs" />
@@ -128,6 +128,11 @@
     <Compile Include="TransactionWindow.xaml.cs">
       <DependentUpon>TransactionWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BaseViewModel.cs" />
+    <Compile Include="ViewModel\TransactionVIewModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\CategoryVIewModel.cs" />
+    <Compile Include="ViewModel\ProductVIewModel.cs" />
     <Page Include="AddScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -159,7 +164,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BaseViewModel.cs" />
     <Compile Include="DataProvider.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -174,6 +178,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReportWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceXAML\MainResource.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,8 +212,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201912171751165_firstMigration.resx">
-      <DependentUpon>201912171751165_firstMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001160322000_firstMigration.resx">
+      <DependentUpon>202001160322000_firstMigration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -222,6 +230,7 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

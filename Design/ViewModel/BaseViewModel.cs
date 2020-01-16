@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Design
+namespace Design.ViewModel
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
@@ -55,3 +55,4 @@ namespace Design
         }
     }
 }
+

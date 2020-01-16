@@ -36,30 +36,30 @@ namespace Design
         {
             InitializeComponent();
 
-            cbbNameGame.ItemsSource = cbbIdG.ItemsSource = dp.showAll("Product","Deleted=false").AsDataView();
-            cbbNameGame.DisplayMemberPath = "Name";
-            cbbNameGame.SelectedValuePath = "Name";
+            //cbbNameGame.ItemsSource = cbbIdG.ItemsSource = dp.showAll("Product","Deleted=false").AsDataView();
+            //cbbNameGame.DisplayMemberPath = "Name";
+            //cbbNameGame.SelectedValuePath = "Name";
 
-            //cbbIdG.ItemsSource = dp2.showAll("Product", "1=1").AsDataView();
-            cbbIdG.DisplayMemberPath = "ID";
-            cbbIdG.SelectedValuePath = "ID";
+            ////cbbIdG.ItemsSource = dp2.showAll("Product", "1=1").AsDataView();
+            //cbbIdG.DisplayMemberPath = "ID";
+            //cbbIdG.SelectedValuePath = "ID";
 
-            tableDataGrid.ItemsSource = dp3.showAll("Trans",null).AsDataView();
-            //"ID, IDGame, Amount, PlacePayment,ModePayment,ModePayment, "
-            txtId.Text = dp1.CreateID("Trans").ToString();
+            //tableDataGrid.ItemsSource = dp3.showAll("Trans",null).AsDataView();
+            ////"ID, IDGame, Amount, PlacePayment,ModePayment,ModePayment, "
+            //txtId.Text = dp1.CreateID("Trans").ToString();
         }
 
         private void CbbPlance_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbbPlance.SelectedIndex == 1) 
-            {
-                txtDeposit.IsEnabled = true;
-            }
-            else
-            {
-                txtDeposit.IsEnabled = false;
-                txtDeposit.Clear();
-            }
+            //if (cbbPlance.SelectedIndex == 1) 
+            //{
+            //    txtDeposit.IsEnabled = true;
+            //}
+            //else
+            //{
+            //    txtDeposit.IsEnabled = false;
+            //    txtDeposit.Clear();
+            //}
         }
 
         private void TxtAmount_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -76,22 +76,22 @@ namespace Design
 
         private void CbbIdG_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbbIdG.SelectedIndex > -1&&txtAmount.Text.Length > 0)
-            {
-                string condition = "ID = " + cbbIdG.SelectedValue;
-                int t = int.Parse(dp2.Get("Product", "SaleCost", condition));
-                txtSubT.Text = (t * int.Parse(txtAmount.Text)).ToString();
-            }
+            //if (cbbIdG.SelectedIndex > -1&&txtAmount.Text.Length > 0)
+            //{
+            //    string condition = "ID = " + cbbIdG.SelectedValue;
+            //    int t = int.Parse(dp2.Get("Product", "SaleCost", condition));
+            //    txtSubT.Text = (t * int.Parse(txtAmount.Text)).ToString();
+            //}
         }
 
         private void TxtAmount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (cbbIdG.SelectedIndex > -1 && txtAmount.Text.Length > 0)
-            {
-                string condition = "ID = " + cbbIdG.SelectedValue;
-                int t = int.Parse(dp2.Get("Product", "SaleCost", condition));
-                txtSubT.Text = (t * int.Parse(txtAmount.Text)).ToString();
-            }
+            //if (cbbIdG.SelectedIndex > -1 && txtAmount.Text.Length > 0)
+            //{
+            //    string condition = "ID = " + cbbIdG.SelectedValue;
+            //    int t = int.Parse(dp2.Get("Product", "SaleCost", condition));
+            //    txtSubT.Text = (t * int.Parse(txtAmount.Text)).ToString();
+            //}
         }
 
         private void cbbSales_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -193,7 +193,7 @@ namespace Design
 
         private void AddScreen_DataChanged(object sender, EventArgs e)
         {
-            tableDataGrid.ItemsSource = dp3.showAll("Trans", "1=1").AsDataView();
+            //tableDataGrid.ItemsSource = dp3.showAll("Trans", "1=1").AsDataView();
 
         }
         void AddScreen_Closed(object sender, EventArgs e)
@@ -202,34 +202,34 @@ namespace Design
         }
         private void BtnOrder_Click(object sender, RoutedEventArgs e)
         {
-            string temp="";
-            if(string.IsNullOrEmpty(txtDeposit.Text))
-            {
-                temp = "0";
-            }
-            else
-            {
-                temp = txtDeposit.Text;
-            }
-            string value = $"{txtId.Text}, {cbbIdG.Text},{txtAmount.Text}, '{cbbPlance.Text}', '{cbbMode.Text}', {temp}, {txtTotal.Text}, '{DateTime.Now.Date.ToString("dd/MM/yyyy")}', true";
-            dp4.Add("Trans",value);
-            tableDataGrid.ItemsSource = dp3.showAll("Trans", "1=1").AsDataView();
-            ClearAll();
+            //string temp="";
+            //if(string.IsNullOrEmpty(txtDeposit.Text))
+            //{
+            //    temp = "0";
+            //}
+            //else
+            //{
+            //    temp = txtDeposit.Text;
+            //}
+            //string value = $"{txtId.Text}, {cbbIdG.Text},{txtAmount.Text}, '{cbbPlance.Text}', '{cbbMode.Text}', {temp}, {txtTotal.Text}, '{DateTime.Now.Date.ToString("dd/MM/yyyy")}', true";
+            //dp4.Add("Trans",value);
+            //tableDataGrid.ItemsSource = dp3.showAll("Trans", "1=1").AsDataView();
+            //ClearAll();
 
         }
         private void ClearAll()
         {
-            txtId.Text = dp1.CreateID("Trans").ToString();
-            cbbIdG.SelectedItem = null;
-            cbbMode.SelectedItem = null;
-            cbbNameGame.SelectedItem = null;
-            cbbPlance.SelectedItem = null;
-            txtAmount.Text = "1";
-            txtDeposit.Text = "";
-            txtSales.Text = "";
-            cbbSales.SelectedItem = null;
-            txtSubT.Text = "";
-            txtTotal.Text = null;
+            //txtId.Text = dp1.CreateID("Trans").ToString();
+            //cbbIdG.SelectedItem = null;
+            //cbbMode.SelectedItem = null;
+            //cbbNameGame.SelectedItem = null;
+            //cbbPlance.SelectedItem = null;
+            //txtAmount.Text = "1";
+            //txtDeposit.Text = "";
+            //txtSales.Text = "";
+            //cbbSales.SelectedItem = null;
+            //txtSubT.Text = "";
+            //txtTotal.Text = null;
 
         }
         private void BtnCancel_Click(object sender, RoutedEventArgs e)

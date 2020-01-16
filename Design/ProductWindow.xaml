@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Design"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             DataContext="{StaticResource ProductVMUC}"
                x:Class="Design.ProductWindow"
              mc:Ignorable="d"
              TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -15,11 +17,19 @@
              Background="{DynamicResource MaterialDesignPaper}"
              FontFamily="{DynamicResource MaterialDesignFont}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedWindowCommand}" 
+                                   CommandParameter="{Binding ElementName=mainWindow}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
     <Grid Background="PaleGreen">
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="250"/>
         </Grid.ColumnDefinitions>
+        
         <materialDesign:Card Grid.Column="0" Margin="0" VerticalAlignment="Stretch">
             <Grid>
                 <Grid.RowDefinitions>
@@ -29,34 +39,43 @@
                 <DockPanel>
                     <StackPanel Grid.Row="0" Orientation="Horizontal" DockPanel.Dock="Right" >
 
-                        <Button x:Name="btnDelete" Click="BtnDelete_Click" ToolTip="Xóa" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                        <Button Command="{Binding DeleteCommand}" ToolTip="Xóa" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                             <materialDesign:PackIcon Kind="Delete" />
                         </Button>
-                        <!--<ToggleButton x:Name="tgbEdit"
-                            Content="E" FontWeight="Bold" Width="{Binding Path=Width, ElementName=btnDelete}" Height="{Binding Path=Height, ElementName=btnDelete}" Background="LightGreen" materialDesign:ShadowAssist.ShadowDepth="Depth2"
-                            Style="{StaticResource MaterialDesignActionLightToggleButton}"
-                            IsChecked="False"
-                            ToolTip="MaterialDesignActionLightToggleButton" />-->
-                        
-                        <Button x:Name="btnImport" Click="BtnImport_Click" ToolTip="thêm từ Excel" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
+                        <Button Command="{Binding ImportCommand}" ToolTip="thêm từ Excel" Background="LightGreen" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}">
                             <materialDesign:PackIcon Kind="Numeric9PlusBoxOutline" />
                         </Button>
 
                     </StackPanel>
 
-                    <TextBox x:Name="txtSearch" TextChanged="TxtSearch_TextChanged"
+                    <TextBox Text="{Binding SearchCommand, UpdateSourceTrigger=PropertyChanged}"
                             materialDesign:HintAssist.Hint="Tìm kiếm" Width="200" HorizontalAlignment="Left" Margin="10 0 0 0"
                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 </DockPanel>
-                <DataGrid Grid.Row="1" x:Name="tableDataGrid" Margin="0 8 0 8" SelectionChanged="TableDataGrid_SelectionChanged"
+                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+                    <ListView ItemsSource="{Binding ListProduct}" SelectedItem="{Binding SelectedProduct,Mode=OneWayToSource}" Height="410">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
+                                <GridViewColumn Header="Amount" DisplayMemberBinding="{Binding Amount}"></GridViewColumn>
+                                <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding PurchaseCost}"></GridViewColumn>
+                                <GridViewColumn Header="Sale" DisplayMemberBinding="{Binding SaleCost}"></GridViewColumn>
+                                <GridViewColumn Header="Publisher" DisplayMemberBinding="{Binding Publisher}"></GridViewColumn>
+                                <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category.Name}"></GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </ScrollViewer>
+                <!--<DataGrid Grid.Row="1" x:Name="tableDataGrid" Margin="0 8 0 8" SelectionChanged="TableDataGrid_SelectionChanged"
                     AutoGenerateColumns="True"
                     CanUserSortColumns="True"
                          
                     CanUserAddRows="False"                             
-                    IsReadOnly="True" 
-                         >
-                    <!--<DataGrid.Columns>
+                    IsReadOnly="True" />-->
+
+                <!--<DataGrid.Columns>
                         <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                         <DataGridTextColumn Header="Amount" Binding="{Binding Amount}"/>
@@ -73,7 +92,6 @@
                         </DataGridTemplateColumn>
 
                     </DataGrid.Columns>-->
-                </DataGrid>
                 <!--<DataGrid AutoGenerateColumns="True" Name="gvData" SelectionMode="Single" FontSize="11" Padding="5" Background="White" Margin="5"  Grid.Row="1"/>-->
             </Grid>
 
@@ -91,44 +109,49 @@
                     </Style>
                 </StackPanel.Resources>
                 <TextBlock Text="Thêm"  Margin="5 0 0 50" HorizontalAlignment="Center"/>
-                <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
-                    <TextBlock Text="ID:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtID" Width="30" materialDesign:HintAssist.Hint="ID" IsEnabled="False"/>
+                <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">                    
                     <TextBlock Text="Name:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtName" Width="138" materialDesign:HintAssist.Hint="Nhập tên sản phẩm"/>
-
+                    <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="138" materialDesign:HintAssist.Hint="Nhập tên sản phẩm"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
                     <TextBlock Text="Amount:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtAmount" Width="90"  materialDesign:HintAssist.Hint="Nhập số lượng" PreviewTextInput="TxtAmount_PreviewTextInput" />
+                    <TextBox Text="{Binding Amount, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Width="90"  materialDesign:HintAssist.Hint="Nhập số lượng" PreviewTextInput="TxtAmount_PreviewTextInput" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
 
                     <TextBlock Text="Publisher:" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtPublisher" Width="150"  materialDesign:HintAssist.Hint="Nhà phát hành"/>
+                    <TextBox Text="{Binding Publisher, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="150"  materialDesign:HintAssist.Hint="Nhà phát hành"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
                     <TextBlock Text="Category:" VerticalAlignment="Center" />
-                    <ComboBox x:Name="cbbCategory" Width="100" materialDesign:HintAssist.Hint="Thể loại"/>
+                    <ComboBox DisplayMemberPath="Name" ItemsSource="{Binding ListCategory}" SelectedItem="{Binding SelectedCategory,Mode=TwoWay}" Width="100" materialDesign:HintAssist.Hint="Thể loại"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
                     <TextBlock Text="Purchase Cost:" VerticalAlignment="Center"/>
-                    <TextBox  x:Name="txtPurchase" Width="100" materialDesign:HintAssist.Hint="Giá mua" PreviewTextInput="TxtPurchase_PreviewTextInput"/>
+                    <TextBox Text="{Binding PCost, Mode=TwoWay}" Width="100" materialDesign:HintAssist.Hint="Giá mua" PreviewTextInput="TxtPurchase_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
                     <TextBlock Text="Sale Cost:" VerticalAlignment="Center"/>
-                    <TextBox  x:Name="txtSale" Width="100" materialDesign:HintAssist.Hint="Giá bán" PreviewTextInput="TxtSale_PreviewTextInput"/>
+                    <TextBox  Text="{Binding SCost, Mode=TwoWay}" Width="100" materialDesign:HintAssist.Hint="Giá bán" PreviewTextInput="TxtSale_PreviewTextInput"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Style="{StaticResource khoangCach}">
-                    <TextBlock Text="Date:" VerticalAlignment="Center"/>
-                    <DatePicker  x:Name="txtDate" Width="120"  materialDesign:HintAssist.Hint="Ngày nhập game" SelectedDateChanged="TxtDate_SelectedDateChanged"/>
+                    <TextBlock Text="Detail:" VerticalAlignment="Top"/>
+                    <TextBox Text="{Binding Detail, Mode=TwoWay}"
+                        TextWrapping="Wrap"
+                        Width="180"
+                        AcceptsReturn="True"
+                        VerticalScrollBarVisibility="Auto" 
+                        VerticalContentAlignment="Top"  
+                        materialDesign:HintAssist.Hint="Thông tin thêm"
+                        Height="80">
+                    </TextBox>
                 </StackPanel>
 
 
                 <TextBlock x:Name="tbWarning" Text="*Bạn vui lòng điền đầy đủ thông tin" Foreground="Red" FontWeight="ExtraBold" Visibility="Hidden"/>
-               
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 50 0 50">
-                    <Button x:Name="btnAdd" Width="100" Click="BtnAdd_Click" Content="Add">
+                    <Button Command="{Binding EditCommand}" Width="100" Content="{Binding TextButton, UpdateSourceTrigger=PropertyChanged}">
                         <Button.Style>
                             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                                 <Style.Triggers>
@@ -154,23 +177,23 @@
                                         <Setter Property="IsEnabled" Value="False"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ElementName=tableDataGrid, Path=SelectedIndex}" Value="1">
-                                        <Setter Property="Content" Value="Update"/>                                        
+                                        <Setter Property="Content" Value="Update"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding ElementName=tableDataGrid, Path=SelectedIndex}" Value="0">
                                         <Setter Property="Content" Value="Add"/>
                                     </DataTrigger>
-                                    <!--<MultiDataTrigger>
+                                    <MultiDataTrigger>
                                         <MultiDataTrigger.Conditions>
                                             
                                         </MultiDataTrigger.Conditions>
-                                    </MultiDataTrigger>-->
+                                    </MultiDataTrigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
 
                     </Button>
 
-                    <Button x:Name="btnClear" Content="Clear" Width="100" Margin="30 0 0 0" Click="BtnClear_Click">
+                    <Button Command="{Binding ClearFormCommand}" Content="Clear" Width="100" Margin="30 0 0 0">
                         <Button.Style>
                             <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                 <Style.Triggers>

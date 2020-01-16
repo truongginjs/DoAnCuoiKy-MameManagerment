@@ -10,9 +10,9 @@ namespace Design.Model
     public abstract class BaseModel
     {
         [Key]
-        public long id { get; set; }
+        public long Id { get; set; }
         [Required]
-        public string name { get; set; }
+        public string Name { get; set; }
         public bool Deleted { get; set; } = false;
     }
 }
