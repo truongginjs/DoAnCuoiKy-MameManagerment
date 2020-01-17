@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Design.Model;
+using LiveCharts;
 
 namespace Design.Adapter
 {
@@ -18,12 +19,12 @@ namespace Design.Adapter
             throw new NotImplementedException();
         }
 
-        public override string[] GetLabels()
+        public override List<string> GetLabels()
         {
             throw new NotImplementedException();
         }
 
-        public override List<double> GetListValue()
+        public override ChartValues<double> GetListValue()
         {
             throw new NotImplementedException();
         }

@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Design.Adapter;
+using Design.Model;
 
 namespace Design.ViewModel.Statistics
 {
@@ -21,14 +23,18 @@ namespace Design.ViewModel.Statistics
         public SeriesCollection AmountSeriesCollection { get; set; }
         public string[] AmountLabels { get; set; }
         public Func<double, string> AmountFormatter { get; set; }
+        ColumnStatistic columnStatistic;
 
         public ColumnViewModel()
         {
             var beginDate = DateTime.Now;
             var endDate = DateTime.Now;
-            var data = Common.Instance.transactions.Where(t => t.DateOfTrans <= endDate && t.DateOfTrans >= beginDate);
+            List<Transaction> data =Common.Instance.transactions.ToList<Transaction>(); 
+            columnStatistic = new ColumnStatistic(data);
+            
+            //var data = Common.Instance.transactions.Where(t => t.DateOfTrans <= endDate && t.DateOfTrans >= beginDate);
             //bieu do 1
-            PaymentFormatter = value => value.ToString();
+            PaymentFormatter = columnStatistic.GetFormatter();
             PaymentLabels = GetLabels(data).ToArray();
 
             PaymentSeriesCollection = new SeriesCollection
@@ -52,7 +58,7 @@ namespace Design.ViewModel.Statistics
                 }
             };
             //bieu do 2
-            AmountFormatter = value => value.ToString();
+            AmountFormatter = columnStatistic.GetFormatter();
             AmountLabels = GetLabels(data).ToArray();
 
             AmountSeriesCollection = new SeriesCollection
@@ -77,26 +83,21 @@ namespace Design.ViewModel.Statistics
             };
         }
 
-        private List<String> GetLabels(IQueryable<Model.Transaction> data)
+        private List<String> GetLabels(List<Transaction> data)
         {
-            
-            data.ToList().ForEach(t => t.Games.ToList().ForEach(g => games.Add(g.Game)));
-            var list = new List<string>();
-            foreach (Game game in games)
-            {
-                list.Add(game.Name);
-            }
-            return list;
+            return columnStatistic.GetLabels();
         }
 
-        private IChartValues GameInStore(IQueryable<Model.Transaction> data)
+        private IChartValues GameInStore(List<Transaction> data)
         {
-            throw new NotImplementedException();
+            //ghi tạm thời
+            return columnStatistic.GetListValue();
         }
 
-        private IChartValues GameSaled(IQueryable<Model.Transaction> data)
+        private IChartValues GameSaled(List<Transaction> data)
         {
-            throw new NotImplementedException();
+            //ghi tạm thời
+            return columnStatistic.GetListValue();
         }
     }
 }

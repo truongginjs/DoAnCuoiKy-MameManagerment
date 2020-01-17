@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Design.Model;
+using LiveCharts;
 
 namespace Design.Adapter
 {
@@ -15,17 +16,26 @@ namespace Design.Adapter
 
         public override Func<double, string> GetFormatter()
         {
-            throw new NotImplementedException();
+            return value => value.ToString();
         }
 
-        public override string[] GetLabels()
+        public override List<string> GetLabels()
         {
-            throw new NotImplementedException();
+            HashSet<Game> games = new HashSet<Game>();
+            Data.ForEach(t => t.Games.ToList().ForEach(g => games.Add(g.Game)));
+            List<string> list = new List<string>();
+            foreach (Game game in games)
+            {
+                list.Add(game.Name);
+            }
+            return list;
         }
 
-        public override List<double> GetListValue()
+        public override ChartValues<double> GetListValue()
         {
-            throw new NotImplementedException();
+            List<double> moneyList = new List<double>();
+            Data.ForEach(t => moneyList.Add(t.paymentAmount));
+            return new ChartValues<double>(moneyList);
         }
     }
 }

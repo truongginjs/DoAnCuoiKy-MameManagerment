@@ -1,4 +1,5 @@
 ﻿using Design.Model;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,23 @@ namespace Design.Adapter
 {
     public class LineStatistic: Statistic
     {
-        
-
         public LineStatistic(List<Transaction> Data): base(Data)
         {
         }
         public override Func<double, string> GetFormatter()
         {
-            throw new NotImplementedException();
+            return value => value.ToString();
         }
 
-        public override string[] GetLabels()
+        public override List<string> GetLabels()
         {
             throw new NotImplementedException();
         }
 
-        public override List<double> GetListValue()
+        public override ChartValues<double> GetListValue()
         {
-            throw new NotImplementedException();
+            
+            return null;
         }
     }
 }

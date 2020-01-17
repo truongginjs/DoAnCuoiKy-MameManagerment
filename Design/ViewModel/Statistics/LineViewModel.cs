@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Design.Adapter;
+using Design.Model;
+using Design.Context;
 
 namespace Design.ViewModel.Statistics
 {
@@ -17,12 +20,17 @@ namespace Design.ViewModel.Statistics
         public SeriesCollection AmountSeriesCollection { get; set; }
         public string[] AmountLabels { get; set; }
         public Func<double, string> AmountFormatter { get; set; }
+        LineStatistic lineStatistic;
 
         public LineViewModel()
         {
+            List<Transaction> data = Common.Instance.transactions.ToList<Transaction>();
+            lineStatistic = new LineStatistic(data);
             //bieu do 1
-            PaymentFormatter = value => value.ToString();
+
+            PaymentFormatter = GetFormatter();
             PaymentLabels = GetLabel();
+
             PaymentSeriesCollection = new SeriesCollection
             {
 
@@ -38,7 +46,7 @@ namespace Design.ViewModel.Statistics
 
             };
             //bieu do 2
-            AmountFormatter = value => value.ToString();
+            AmountFormatter = GetFormatter();
             AmountLabels = GetLabel();
             AmountSeriesCollection = new SeriesCollection
             {
@@ -58,12 +66,16 @@ namespace Design.ViewModel.Statistics
 
         private IChartValues GetlistData()
         {
-            throw new NotImplementedException();
+            return lineStatistic.GetListValue();
         }
 
         private string[] GetLabel()
         {
-            throw new NotImplementedException();
+            return lineStatistic.GetLabels().ToArray();
+        }
+        private Func<double, string> GetFormatter()
+        {
+            return lineStatistic.GetFormatter();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Design.Model;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +17,8 @@ namespace Design.Adapter
             this.Data = Data;
         }
 
-        public abstract string[] GetLabels();
-        public abstract List<double> GetListValue();
+        public abstract List<string> GetLabels();
+        public abstract ChartValues<double> GetListValue();
         public abstract Func<double, string> GetFormatter();
     }
 }
