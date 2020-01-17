@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Design.Model;
 
 namespace Design.Adapter
 {
-    class ColumnStatistic : Statistic
+    public class ColumnStatistic : Statistic
     {
+        public ColumnStatistic(List<Transaction> Data) : base(Data)
+        {
+        }
+
         public override Func<double, string> GetFormatter()
         {
             throw new NotImplementedException();

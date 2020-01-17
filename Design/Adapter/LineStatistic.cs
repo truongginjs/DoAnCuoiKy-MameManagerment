@@ -9,9 +9,9 @@ namespace Design.Adapter
 {
     public class LineStatistic: Statistic
     {
-        private object super;
+        
 
-        public LineStatistic(List<Transaction> Data)
+        public LineStatistic(List<Transaction> Data): base(Data)
         {
         }
         public override Func<double, string> GetFormatter()
