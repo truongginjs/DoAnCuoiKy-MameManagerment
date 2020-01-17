@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Design.Model
 {
-    public class Category: BaseModel
+    public class Category : BaseModel
     {
         public string Detail { get; set; }
         public virtual ICollection<Game> Games { get; set; }

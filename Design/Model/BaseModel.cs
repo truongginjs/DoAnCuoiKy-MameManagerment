@@ -14,5 +14,7 @@ namespace Design.Model
         [Required]
         public string Name { get; set; }
         public bool Deleted { get; set; } = false;
+        //public abstract object this[string attribute] { get; set; }
     }
 }
+

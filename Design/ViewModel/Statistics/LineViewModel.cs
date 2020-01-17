@@ -15,67 +15,24 @@ namespace Design.ViewModel.Statistics
     {
         public SeriesCollection PaymentSeriesCollection { get; set; }
         public string[] PaymentLabels { get; set; }
-        public Func<double, string> PaymentFormatter { get; set; }
 
         public SeriesCollection AmountSeriesCollection { get; set; }
         public string[] AmountLabels { get; set; }
-        public Func<double, string> AmountFormatter { get; set; }
-        LineStatistic lineStatistic;
+        
 
         public LineViewModel()
         {
-            List<Transaction> data = Common.Instance.transactions.ToList<Transaction>();
-            lineStatistic = new LineStatistic(data);
+
+            LineStatistic lineStatistic = new LineStatistic(new PaymentRequest());
             //bieu do 1
 
-            PaymentFormatter = GetFormatter();
-            PaymentLabels = GetLabel();
+            PaymentLabels = lineStatistic.GetLabels();
 
-            PaymentSeriesCollection = new SeriesCollection
-            {
-
-                new LineSeries
-                {
-                    Title = "doanh thu",
-
-                    Values =GetlistData(),
-
-                    //DataLabels = true,
-
-                },
-
-            };
+            PaymentSeriesCollection = lineStatistic.GetListValue();
             //bieu do 2
-            AmountFormatter = GetFormatter();
-            AmountLabels = GetLabel();
-            AmountSeriesCollection = new SeriesCollection
-            {
-
-                new LineSeries
-                {
-                    Title = "doanh thu",
-
-                    Values =GetlistData(),
-
-                    //DataLabels = true,
-
-                },
-
-            };
-        }
-
-        private IChartValues GetlistData()
-        {
-            return lineStatistic.GetListValue();
-        }
-
-        private string[] GetLabel()
-        {
-            return lineStatistic.GetLabels().ToArray();
-        }
-        private Func<double, string> GetFormatter()
-        {
-            return lineStatistic.GetFormatter();
+            lineStatistic = new LineStatistic(new AmountRequest());
+            AmountLabels = lineStatistic.GetLabels();
+            AmountSeriesCollection = lineStatistic.GetListValue();
         }
     }
 }

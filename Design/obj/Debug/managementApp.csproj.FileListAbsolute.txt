@@ -114,7 +114,6 @@ C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\managementApp.
 C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\managementApp.csproj.CoreCompileInputs.cache
 C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\managementApp.csproj.CopyComplete
 C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\ResourceXAML\MainResource.baml
-C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\Design.Migrations.firstMigration.resources
 C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\DrawColumnChart.g.cs
 C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\DrawColumnChart.baml
 D:\School\Kiến Trúc Phần Mềm\DoAn\Design\bin\Debug\Design.exe.config
@@ -176,3 +175,4 @@ D:\School\Kiến Trúc Phần Mềm\DoAn\Design\obj\Debug\managementApp.csproj.C
 D:\School\Kiến Trúc Phần Mềm\DoAn\Design\obj\Debug\Design.exe
 D:\School\Kiến Trúc Phần Mềm\DoAn\Design\obj\Debug\Design.pdb
 D:\School\Kiến Trúc Phần Mềm\DoAn\Design\obj\Debug\Design.Migrations.firstMigration.resources
+C:\Users\Asus\Desktop\DoAnCuoiKy-MameManagerment\Design\obj\Debug\Design.Migrations.firstMigration.resources

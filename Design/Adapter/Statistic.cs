@@ -1,4 +1,5 @@
-﻿using Design.Model;
+﻿using Design.Context;
+using Design.Model;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,21 @@ namespace Design.Adapter
     public abstract class Statistic
     {
         protected List<Transaction> Data { get; set; }
+        protected Request request;
 
         protected Statistic(List<Transaction> Data)
         {
             this.Data = Data;
+            this.request = new PaymentRequest();
         }
 
-        public abstract List<string> GetLabels();
-        public abstract ChartValues<double> GetListValue();
-        public abstract Func<double, string> GetFormatter();
+        protected Statistic(Request request)
+        {
+            Data = Common.Instance.transactions.ToList<Transaction>();
+            this.request = request;
+        }
+
+        public abstract string[] GetLabels();
+        public abstract SeriesCollection GetListValue();
     }
 }

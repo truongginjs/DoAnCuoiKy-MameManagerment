@@ -27,21 +27,15 @@
         </Grid.ColumnDefinitions>
         <DockPanel >
             <TextBlock Margin="0 5 0 0" Text="Biển đồ doanh thu" FontWeight="Bold" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <lvc:CartesianChart Series="{Binding MoneySeriesCollection}" LegendLocation="Right" Grid.Column="1">
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Sales" LabelFormatter="{Binding MoneyFormatter}"></lvc:Axis>
-                </lvc:CartesianChart.AxisY>
+            <lvc:CartesianChart Series="{Binding PaymentSeriesCollection}" LegendLocation="Right" Grid.Column="1">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Title="Month" Labels="{Binding MoneyLabels}"></lvc:Axis>
+                    <lvc:Axis Title="Month" Labels="{Binding PaymentLabels}"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>
             </lvc:CartesianChart>
         </DockPanel>
         <DockPanel Grid.Column="1" >
             <TextBlock Text="Biển đồ hàng hóa"  Margin="0 5 0 0" FontWeight="Bold" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
             <lvc:CartesianChart Series="{Binding AmountSeriesCollection}" LegendLocation="Right" Grid.Column="1">
-                <lvc:CartesianChart.AxisY>
-                    <lvc:Axis Title="Sales" LabelFormatter="{Binding AmountFormatter}"></lvc:Axis>
-                </lvc:CartesianChart.AxisY>
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Title="Month" Labels="{Binding AmountLabels}"></lvc:Axis>
                 </lvc:CartesianChart.AxisX>

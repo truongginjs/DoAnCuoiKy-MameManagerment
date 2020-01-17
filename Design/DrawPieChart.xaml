@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel >
             <TextBlock Margin="0 5 0 0" Text="Biển đồ doanh thu" FontWeight="Bold" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <lvc:PieChart LegendLocation="Right" Hoverable="True" DataTooltip="{x:Null}"  Series="{Binding PaymentSeriesCollection, RelativeSource={RelativeSource AncestorType=UserControl}}" >
+            <lvc:PieChart LegendLocation="Right" Hoverable="True" DataTooltip="{x:Null}"  Series="{Binding PaymentSeriesCollection}" >
                 <lvc:PieChart.ChartLegend>
                     <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
                 </lvc:PieChart.ChartLegend>
@@ -35,7 +35,7 @@
         </DockPanel>
         <DockPanel Grid.Column="1" >
             <TextBlock Text="Biển đồ hàng hóa"  Margin="0 5 0 0" FontWeight="Bold" HorizontalAlignment="Center" DockPanel.Dock="Top"/>
-            <lvc:PieChart LegendLocation="Right" Grid.Column="1" Grid.Row="0" Hoverable="True" DataTooltip="{x:Null}"  Series="{Binding AmountSeriesCollection,RelativeSource={RelativeSource AncestorType=UserControl}}" >
+            <lvc:PieChart LegendLocation="Right" Grid.Column="1" Grid.Row="0" Hoverable="True" DataTooltip="{x:Null}"  Series="{Binding AmountSeriesCollection}" >
             <lvc:PieChart.ChartLegend>
                 <lvc:DefaultLegend BulletSize="20"></lvc:DefaultLegend>
             </lvc:PieChart.ChartLegend>
