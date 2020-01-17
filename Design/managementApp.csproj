@@ -90,6 +90,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Adapter\PieStatistic.cs" />
+    <Compile Include="Adapter\ColumnStatistic.cs" />
+    <Compile Include="Adapter\LineStatistic.cs" />
+    <Compile Include="Adapter\Statistic.cs" />
     <Compile Include="CategoryWindow.xaml.cs">
       <DependentUpon>CategoryWindow.xaml</DependentUpon>
     </Compile>
